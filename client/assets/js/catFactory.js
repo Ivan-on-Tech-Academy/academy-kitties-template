@@ -48,11 +48,15 @@ function eyeVariation(num) {
             normalEyes()
             $('#eyeName').html('Basic')
             break
+        case 2:
+            normalEyes()
+            $('#eyeName').html('Chill')
+            return eyesType1()
+            break
     }
 }
 
 
-//8 decorations types
 function decorationVariation(num) {
     $('#dnadecoration').html(num)
     switch (num) {
@@ -63,17 +67,15 @@ function decorationVariation(num) {
     }
 }
 
-//6 Animations
-
-// **   Eyes **  //
-
-async function normalEyes() {
-    await $('.cat__eye').find('span').css('border', 'none')
+function normalEyes() {
+    $('.cat__eye').find('span').css('border', 'none')
 }
 
-// **   Decoration **  //
 
-// ** Angles ** //
+function eyesType1() {
+    $('.cat__eye').find('span').css('border-top', '15px solid')
+}
+
 
 async function normaldecoration() {
     //Remove all style from other decorations
