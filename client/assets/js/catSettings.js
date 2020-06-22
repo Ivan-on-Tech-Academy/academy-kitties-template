@@ -82,3 +82,18 @@ $('#bodycolor').change(()=>{
     var colorVal = $('#bodycolor').val()
     headColor(colors[colorVal],colorVal)
 })
+
+$('#mouthcolor').change(()=>{
+    var colorVal = $('#mouthcolor').val()
+    mouthAndBelly(colors[colorVal],colorVal)
+})
+
+$('#eyecolor').change(()=>{
+    var colorVal = $('#eyecolor').val()
+    eyeColor(colors[colorVal],colorVal)
+})
+
+$('#earcolor').change(()=>{
+    var colorVal = $('#earcolor').val()
+    earsAndPaw(colors[colorVal],colorVal)
+})
