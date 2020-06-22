@@ -14,9 +14,9 @@ function genColors(){
     return colors
 }
 
-function headColor(color,code) {
-    $('.cat__head, .cat__chest').css('background', '#' + color)
-    $('#headcode').html('code: '+code)
+function headColor(color,code) { 
+    $('.cat__head, .cat__chest').css('background', '#' + color) 
+    $('#headcode').html('code: ' + code)
     $('#dnabody').html(code)
 }
 
