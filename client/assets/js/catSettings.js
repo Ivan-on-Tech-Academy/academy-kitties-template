@@ -75,6 +75,12 @@ function getDna(){
 function renderCat(dna){
     headColor(colors[dna.headcolor],dna.headcolor)
     $('#bodycolor').val(dna.headcolor)
+    mouthAndBelly(colors[dna.mouthColor],dna.mouthColor)      
+    $('#mouthcolor').val(dna.mouthColor)
+    eyeColor(colors[dna.eyesColor],dna.eyesColor)   
+    $('#eyecolor').val(dna.eyesColor)
+    earsAndPaw(colors[dna.earsColor],dna.earsColor)
+    $('#earcolor').val(dna.earsColor)
 }
 
 // Changing cat colors
