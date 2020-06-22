@@ -19,6 +19,23 @@ function headColor(color,code) {
     $('#headcode').html('code: ' + code)
     $('#dnabody').html(code)
 }
+function mouthAndBelly(color,code) {
+    $('.cat__mouth-contour, .cat__tail, .cat__chest_inner').css('background', '#' + color)
+    $('#mouthcode').html('code: '+code)
+    $('#dnamouth').html(code)
+}
+
+function eyeColor(color,code) {
+    $('.cat__eye').find('span').css('background', '#' + color)
+    $('#eyecode').html('code: '+code)
+    $('#dnaeyes').html(code)
+}
+
+function earsAndPaw(color,code) {
+    $('.cat__ear--left, .cat__ear--right, .cat__paw-left, .cat__paw-right,  .cat__paw-left_inner, .cat__paw-right_inner').css('background', '#' + color)
+    $('#earscode').html('code: '+code)
+    $('#dnaears').html(code)
+}
 
 // Variation functions for range-bars
 
