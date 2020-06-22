@@ -21,6 +21,13 @@ $( document ).ready(function() {
   $('#dnamouth').html(defaultDNA.mouthColor);
   $('#dnaeyes').html(defaultDNA.eyesColor);
   $('#dnaears').html(defaultDNA.earsColor);
+    
+//   $('#dnashape').html(defaultDNA.eyesShape)
+//   $('#dnadecoration').html(defaultDNA.decorationPattern)
+//   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
+//   $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
+//   $('#dnadanimation').html(defaultDNA.animation)
+//   $('#dnaspecial').html(defaultDNA.lastNum)
 
   renderCat(defaultDNA)
 });
