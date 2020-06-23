@@ -155,3 +155,13 @@ $('#animation').change(()=>{
     var animationVal = parseInt( $('#animation').val() )
     animationVariation(animationVal)
 })
+
+function showColors(){
+    $('#catColors').removeClass('hidden')
+    $('#cattributes').addClass('hidden')
+}
+
+function showCattributes(){
+    $('#cattributes').removeClass('hidden')
+    $('#catColors').addClass('hidden')
+}
