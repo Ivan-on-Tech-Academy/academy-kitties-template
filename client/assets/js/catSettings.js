@@ -26,7 +26,7 @@ $( document ).ready(function() {
 //   $('#dnadecoration').html(defaultDNA.decorationPattern)
 //   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
 //   $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-//   $('#dnadanimation').html(defaultDNA.animation)
+//   $('#dnaanimation').html(defaultDNA.animation)
 //   $('#dnaspecial').html(defaultDNA.lastNum)
 
   renderCat(defaultDNA)
