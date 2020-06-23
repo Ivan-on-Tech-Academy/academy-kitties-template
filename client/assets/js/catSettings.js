@@ -17,10 +17,17 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
-  $('#dnamouth').html(defaultDNA.mouthColor);
-  $('#dnaeyes').html(defaultDNA.eyesColor);
-  $('#dnaears').html(defaultDNA.earsColor);
+    $('#dnabody').html(defaultDNA.headColor);
+    $('#dnamouth').html(defaultDNA.mouthColor);
+    $('#dnaeyes').html(defaultDNA.eyesColor);
+    $('#dnaears').html(defaultDNA.earsColor);
+
+    $('#dnashape').html(defaultDNA.eyesShape)
+    $('#dnadecoration').html(defaultDNA.decorationPattern)
+    $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
+    $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
+    $('#dnadanimation').html(defaultDNA.animation)
+    $('#dnaspecial').html(defaultDNA.lastNum)
 
   renderCat(defaultDNA)
 });
@@ -107,6 +114,6 @@ $('#earcolor').change(()=>{
 })
 
 $('#eyeshape').change(()=>{
-    var shape = parseInt($('#eyeshape').val())
+    var shape = parseInt($('#eyeshape').val()) // between 1 and 7
     eyeVariation(shape)
 })

@@ -43,15 +43,24 @@ function earsAndPaw(color,code) {
 function eyeVariation(num) {
 
     $('#dnashape').html(num)
+
     switch (num) {
         case 1:
             normalEyes()
-            $('#eyeName').html('Basic')
+            $('#eyeName').html('Basic') //Set the badge to "Basic"
             break
         case 2:
-            normalEyes()
-            $('#eyeName').html('Chill')
-            return eyesType1()
+            normalEyes() //reset
+            $('#eyeName').html('Chill') //Set the badge to "Chill"
+            eyesType1() //Set border to change the shape of the eye
+            break
+        case 3:
+            normalEyes() //reset
+            $('#eyeName').html('Up') //Set the badge to "Chill"
+            eyesType2() //Set border to change the shape of the eye
+            break
+        default:
+            console.log("Not 1 or 2")
             break
     }
 }
@@ -76,6 +85,9 @@ function eyesType1() {
     $('.cat__eye').find('span').css('border-top', '15px solid')
 }
 
+function eyesType2() {
+    $('.cat__eye').find('span').css('border-bottom', '15px solid')
+}
 
 async function normaldecoration() {
     //Remove all style from other decorations
