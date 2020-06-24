@@ -1,9 +1,11 @@
 pragma solidity ^0.5.12;
 
 import "./IERC721.sol";
+import "./Ownable.sol";
 
-contract Kittycontract is IERC721 {
+contract Kittycontract is IERC721, Ownable {
 
+    uint256 public constant CREATION_LIMIT_GEN0 = 10;
     string public constant name = "FilipKitties";
     string public constant symbol = "FK";
 
@@ -13,7 +15,7 @@ contract Kittycontract is IERC721 {
         uint256 mumId, 
         uint256 dadId, 
         uint256 genes
-    )
+    );
 
     struct Kitty {
         uint256 genes;
@@ -28,7 +30,59 @@ contract Kittycontract is IERC721 {
     mapping (uint256 => address) public kittyIndexToOwner;
     mapping (address => uint256) ownershipTokenCount;
 
-    
+    uint256 public gen0Counter;
+
+
+    function getKitty(uint256 _id) external view returns (
+        uint256 genes,
+        uint256 birthTime,
+        uint256 mumId,
+        uint256 dadId,
+        uint256 generation
+    ) 
+    {
+        Kitty storage kitty = kitties[_id];
+
+        birthTime = uint256(kitty.birthTime);
+        mumId = uint256(kitty.mumId);
+        dadId = uint256(kitty.dadId);
+        generation = uint256(kitty.generation);
+        genes = kitty.genes;
+    }
+
+    function createKittyGen0(uint256 _genes) public onlyOwner returns (uint256) {
+        require(gen0Counter < CREATION_LIMIT_GEN0);
+
+        gen0Counter++;
+
+        // Gen0 have no owners they are own by the contract
+        return _createKitty(0, 0, 0, _genes, msg.sender);
+    }
+
+    function _createKitty(
+        uint256 _mumId,
+        uint256 _dadId,
+        uint256 _generation,
+        uint256 _genes,
+        address _owner
+    ) private returns (uint256) {
+        Kitty memory _kitty = Kitty({
+            genes: _genes,
+            birthTime: uint64(now),
+            mumId: uint32(_mumId),
+            dadId: uint32(_dadId),
+            generation: uint16(_generation)
+        });
+
+        uint256 newKittenId = kitties.push(_kitty) - 1;
+
+        emit Birth(_owner, newKittenId, _mumId, _dadId, _genes);
+
+        _transfer(address(0), _owner, newKittenId);
+
+        return newKittenId;
+
+    }
 
     function balanceOf(address owner) external view returns (uint256 balance){
         return ownershipTokenCount[owner];
