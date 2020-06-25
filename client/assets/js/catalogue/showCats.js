@@ -67,9 +67,11 @@ function catDna(dnaStr) {
 }
 
 //Cat HTML Div
+var name = "Filip"
+var string = "hello " + name + "!" 
 
 function catBox(id) {
-
+        
     var catDiv = `<div class="col-lg-4 pointer fit-content">
                  <div class="featureBox catDiv">
              

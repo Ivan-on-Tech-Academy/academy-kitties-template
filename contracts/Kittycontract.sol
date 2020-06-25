@@ -30,16 +30,51 @@ contract Kittycontract is IERC721, Ownable {
     mapping (uint256 => address) public kittyIndexToOwner;
     mapping (address => uint256) ownershipTokenCount;
 
+    mapping (uint256 => address) public kittyIndexToApproved;
+    mapping (address => mapping (address => bool)) private _operatorApprovals;
+
     uint256 public gen0Counter;
+
+    function transferFrom(address _from, address _to,uint256 _tokenId) public {
+        require(_to != address(0));
+        require(msg.sender == _from || _approvedFor(msg.sender, _tokenId) || isApprovedForAll(_from, msg.sender));
+        require(_owns(_from, _tokenId));
+        require(_tokenId < kitties.length);
+
+        _transfer(_from, _to, _tokenId);
+    }
+
+    function approve(address _to, uint256 _tokenId) public {
+        require(_owns(msg.sender, _tokenId));
+
+        _approve(_tokenId, _to);
+        emit Approval(msg.sender, _to, _tokenId);
+    }
+
+    function setApprovalForAll(address operator, bool approved) public {
+        require(operator != msg.sender);
+
+        _operatorApprovals[msg.sender][operator] = approved;
+        emit ApprovalForAll(msg.sender, operator, approved);
+    }
+    
+    function getApproved(uint256 tokenId) public view returns (address) {
+        require(tokenId < kitties.length); //Token must exist
+
+        return kittyIndexToApproved[tokenId];
+    }
+    function isApprovedForAll(address owner, address operator) public view returns (bool) {
+        return _operatorApprovals[owner][operator];
+    }
 
     function getKittyByOwner(address _owner) external view returns(uint[] memory) {
         uint[] memory result = new uint[](ownershipTokenCount[_owner]);
         uint counter = 0;
         for (uint i = 0; i < kitties.length; i++) {
-        if (kittyIndexToOwner[i] == _owner) {
-            result[counter] = i;
-            counter++;
-        }
+            if (kittyIndexToOwner[i] == _owner) {
+                result[counter] = i;
+                counter++;
+            }
         }
         return result;
     }
@@ -125,6 +160,7 @@ contract Kittycontract is IERC721, Ownable {
 
         if (_from != address(0)) {
             ownershipTokenCount[_from]--;
+            delete kittyIndexToApproved[_tokenId];
         }
 
         // Emit the transfer event.
@@ -132,7 +168,13 @@ contract Kittycontract is IERC721, Ownable {
     }
 
     function _owns(address _claimant, uint256 _tokenId) internal view returns (bool) {
-      return kittyIndexToOwner[_tokenId] == _claimant;
-  }
+        return kittyIndexToOwner[_tokenId] == _claimant;
+    }
+    function _approve(uint256 _tokenId, address _approved) internal {
+        kittyIndexToApproved[_tokenId] = _approved;
+    }
+    function _approvedFor(address _claimant, uint256 _tokenId) internal view returns (bool) {
+        return kittyIndexToApproved[_tokenId] == _claimant;
+    }
 
 }

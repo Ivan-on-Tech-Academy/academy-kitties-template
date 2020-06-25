@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
  
 var instance;
 var user;
-var contractAddress = "0x02c96b75e9473af4FC517a924F62C4c24E642917";
+var contractAddress = "0x01aB0Cd2A3f72F8Fa2b76DC327F6270cCAEA152F";
  
 $(document).ready(function(){
     window.ethereum.enable().then(function(accounts){
@@ -45,23 +45,17 @@ function createKitty(){
 
 async function getKitties(){  
 
-    //    instance.methods.getKittyByOwner(user);
-      var arrayId;
-      var kitty;
-      try{    
-        arrayId = await instance.methods.getKittyByOwner(user).call();
-      } catch(err){
-        console.log(err);
-      }
-      for (i = 0; i < arrayId.length; i++){
-        kitty = await instance.methods.getKitty(arrayId[i]).call();
-        appendCat(kitty[0],i)
-      }
-      console.log(kitty);
-    
+    var arrayId;
+    var kitty;
+    try{    
+      arrayId = await instance.methods.getKittyByOwner(user).call();
+    } catch(err){
+      console.log(err);
     }
-    
-    
-    function displayKittyInfo(owner, kittyId, mumId, dadId, genes) {
-      $("kittytable").removeClass('hidden')
+    for (i = 0; i < arrayId.length; i++){
+      kitty = await instance.methods.getKitty(arrayId[i]).call();
+      appendCat(kitty[0],i)
     }
+    console.log(kitty);
+    
+}
