@@ -4,6 +4,7 @@ import "./IERC721.sol";
 import "./IERC721Receiver.sol";
 import "./Ownable.sol";
 
+
 contract Kittycontract is IERC721, Ownable {
 
     uint256 public constant CREATION_LIMIT_GEN0 = 10;
@@ -12,6 +13,27 @@ contract Kittycontract is IERC721, Ownable {
 
     bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
 
+    /*
+     *     bytes4(keccak256('balanceOf(address)')) == 0x70a08231
+     *     bytes4(keccak256('ownerOf(uint256)')) == 0x6352211e
+     *     bytes4(keccak256('approve(address,uint256)')) == 0x095ea7b3
+     *     bytes4(keccak256('getApproved(uint256)')) == 0x081812fc
+     *     bytes4(keccak256('setApprovalForAll(address,bool)')) == 0xa22cb465
+     *     bytes4(keccak256('isApprovedForAll(address,address)')) == 0xe985e9c5
+     *     bytes4(keccak256('transferFrom(address,address,uint256)')) == 0x23b872dd
+     *     bytes4(keccak256('safeTransferFrom(address,address,uint256)')) == 0x42842e0e
+     *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)')) == 0xb88d4fde
+     *
+     *     => 0x70a08231 ^ 0x6352211e ^ 0x095ea7b3 ^ 0x081812fc ^
+     *        0xa22cb465 ^ 0xe985e9c ^ 0x23b872dd ^ 0x42842e0e ^ 0xb88d4fde == 0x80ac58cd
+     */
+    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+
+    /*
+     *     bytes4(keccak256('supportsInterface(bytes4)'));
+     */
+    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7
+      
 
     event Birth(
         address owner, 
@@ -38,6 +60,10 @@ contract Kittycontract is IERC721, Ownable {
     mapping (address => mapping (address => bool)) private _operatorApprovals;
 
     uint256 public gen0Counter;
+
+    function supportsInterface(bytes4 _interfaceId) external view returns (bool){
+        return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165)
+    }
 
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
         safeTransferFrom(_from, _to, _tokenId, "");
