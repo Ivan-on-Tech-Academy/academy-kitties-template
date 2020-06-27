@@ -32,7 +32,7 @@ contract Kittycontract is IERC721, Ownable {
     /*
      *     bytes4(keccak256('supportsInterface(bytes4)'));
      */
-    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7
+    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
       
 
     event Birth(
@@ -61,8 +61,33 @@ contract Kittycontract is IERC721, Ownable {
 
     uint256 public gen0Counter;
 
+    function breed(uint256 _dadId, uint256 _mumId) public returns (uint256){
+        require(_owns(msg.sender, _dadId), "The user doesn't own the token");
+        require(_owns(msg.sender, _mumId), "The user doesn't own the token");
+
+        ( uint256 dadDna,,,,uint256 DadGeneration ) = getKitty(_dadId);
+
+        ( uint256 mumDna,,,,uint256 MumGeneration ) = getKitty(_mumId);
+        
+        uint256 newDna = _mixDna(dadDna, mumDna);
+
+        uint256 kidGen = 0;
+        if (DadGeneration < MumGeneration){
+            kidGen = MumGeneration + 1;
+            kidGen /= 2;
+        } else if (DadGeneration > MumGeneration){
+            kidGen = DadGeneration + 1;
+            kidGen /= 2;
+        } else{
+            kidGen = MumGeneration + 1;
+        }
+
+        _createKitty(_mumId, _dadId, kidGen, newDna, msg.sender);
+
+    }
+
     function supportsInterface(bytes4 _interfaceId) external view returns (bool){
-        return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165)
+        return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
     }
 
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
@@ -121,7 +146,7 @@ contract Kittycontract is IERC721, Ownable {
     }
 
 
-    function getKitty(uint256 _id) external view returns (
+    function getKitty(uint256 _id) public view returns (
         uint256 genes,
         uint256 birthTime,
         uint256 mumId,
@@ -240,5 +265,24 @@ contract Kittycontract is IERC721, Ownable {
         
         //spender is from OR spender is approved for tokenId OR spender is operator for from
         return (_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
+    }
+
+    function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256){
+        //dadDna: 11 22 33 44 55 66 77 88 
+        //mumDna: 88 77 66 55 44 33 22 11
+
+        uint256 firstHalf = _dadDna / 100000000; //11223344
+        uint256 secondHalf = _mumDna % 100000000; //88776655
+        
+        uint256 newDna = firstHalf * 100000000;
+        newDna = newDna + secondHalf; // 1122334488776655
+        return newDna;
+
+        //11 22 33 44 88 77 66 55
+
+        //10 + 20
+        //10 * 100 = 1000
+        //1000 + 20 = 1020
+    
     }
 }
