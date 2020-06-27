@@ -167,14 +167,24 @@ contract Kittycontract is IERC721, Ownable {
         emit Transfer(_from, _to, _tokenId);
     }
 
-    function _breed(address _from, uint256 _tokenId1, uint256 _tokenId2) internal returns (uint256){
-        Kitty storage cat1 = kitties[_tokenId1];
-        Kitty storage cat2 = kitties[_tokenId2];
-        uint16 generation = cat1.generation;
-        if(cat2.generation > cat1.generation){
-            generation = cat2.generation;
+    function breed(uint256 _dadId, uint256 _mumId) internal returns (uint256){
+        Kitty storage dad = kitties[_tokenId1];
+        Kitty storage mum = kitties[_mumId];
+
+        uint16 kidGeneration = dad.generation + 1;
+        if(mum.generation > dad.generation){
+            generation = mum.generation + 1;
         }
-        uint256 childGenes = _mixGenes(cat1.genes, cat2.genes);
+        uint256 childGenes = _mixGenes(dad.genes, mum.genes);
+    }
+
+    function _mixGenes(uint256 dadGenes, uint256 mumGenes) internal view returns (uint256){
+        uint256 newGene;
+        uint128 mumHalf = uint128((mumGenes / 100000000) % 100000000);
+        uint128 dadHalf = uint128(dadGenes % 100000000);
+        newGene = mumHalf * 100000000;
+        newGene = newGene + dadHalf;
+        return newGene;
     }
 
     function _owns(address _claimant, uint256 _tokenId) internal view returns (bool) {
