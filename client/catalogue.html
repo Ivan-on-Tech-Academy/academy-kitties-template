@@ -39,13 +39,10 @@
 
         </div>
     </div>
-    <div>
-
-    </div>
-
-    </div>
 
     <div class="container middleBox">
+        <button class="btn red-btn mb-3 mt-3" onclick="go_to('breed.html')">Breed </button>
+        <br>
         <div class="row" id="catsDiv">
 
         </div>
@@ -56,6 +53,16 @@
     <footer align="left">
         <p>Ivan on Tech Academy Bootcamp July 2020</p>
     </footer>
+
+    
+    <script>
+        // when page load create the catalog
+        $(document).ready(function () {
+            setTimeout(() => {
+                getKitties()
+            }, 1000)
+        });
+    </script>
 
 </body>
 

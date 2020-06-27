@@ -38,15 +38,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/admin/Documents/Github/academy-kitties-template/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/admin/Documents/Github/academy-kitties-template/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x5a16154aea44a179dbcaba5feab0331cb0c3f0b31853a60b087605264bb75cfe\",\"urls\":[\"bzz-raw://feda885074d0370b7b9aa0b50dae5e7f5d298a0335e8746df3ad38f5666f8dde\",\"dweb:/ipfs/QmW32E4Usy7kgQMaJ2ntMBSnHPKTEV76i6wjC4tgM9mbed\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/hello/github/academy-kitties-template/contracts/IERC721Receiver.sol\":\"IERC721Receiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/hello/github/academy-kitties-template/contracts/IERC721Receiver.sol\":{\"keccak256\":\"0x98e77e5fc3c9d8f157ad8e88db5afe0a2a2afcd6c1d1e314714f2b64b2e8ea43\",\"urls\":[\"bzz-raw://1a417cf515e3a532bc323b7c0d6624662c65300d7907546dcc51b3f61dba423a\",\"dweb:/ipfs/QmUy2FMwJBLjpXtAcBmLAU9x51ZLARBmPaTs8tzpJTF6CP\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.12;\n\ninterface IERC721Receiver {\n    function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns (bytes4);\n}",
-  "sourcePath": "/Users/admin/Documents/Github/academy-kitties-template/contracts/IERC721Receiver.sol",
+  "source": "pragma solidity ^0.5.12;\r\n\r\ninterface IERC721Receiver {\r\n    function onERC721Received(address operator, address from, uint tokenId, bytes calldata data) external returns (bytes4);\r\n}",
+  "sourcePath": "C:\\Users\\hello\\github\\academy-kitties-template\\contracts\\IERC721Receiver.sol",
   "ast": {
-    "absolutePath": "/Users/admin/Documents/Github/academy-kitties-template/contracts/IERC721Receiver.sol",
+    "absolutePath": "/C/Users/hello/github/academy-kitties-template/contracts/IERC721Receiver.sol",
     "exportedSymbols": {
       "IERC721Receiver": [
         137
@@ -98,7 +98,7 @@
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "84:16:1",
+                  "src": "87:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -109,7 +109,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:1",
+                    "src": "87:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -125,7 +125,7 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "102:12:1",
+                  "src": "105:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -136,7 +136,7 @@
                     "id": 126,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "102:7:1",
+                    "src": "105:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -152,7 +152,7 @@
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "116:12:1",
+                  "src": "119:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -163,7 +163,7 @@
                     "id": 128,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "116:4:1",
+                    "src": "119:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -178,7 +178,7 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "130:19:1",
+                  "src": "133:19:1",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -189,7 +189,7 @@
                     "id": 130,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "130:5:1",
+                    "src": "133:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -199,7 +199,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:67:1"
+              "src": "86:67:1"
             },
             "returnParameters": {
               "id": 135,
@@ -211,7 +211,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "169:6:1",
+                  "src": "172:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -222,7 +222,7 @@
                     "id": 133,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "169:6:1",
+                    "src": "172:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -232,23 +232,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "168:8:1"
+              "src": "171:8:1"
             },
             "scope": 137,
-            "src": "58:119:1",
+            "src": "61:119:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 138,
-        "src": "26:153:1"
+        "src": "28:155:1"
       }
     ],
-    "src": "0:179:1"
+    "src": "0:183:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/admin/Documents/Github/academy-kitties-template/contracts/IERC721Receiver.sol",
+    "absolutePath": "/C/Users/hello/github/academy-kitties-template/contracts/IERC721Receiver.sol",
     "exportedSymbols": {
       "IERC721Receiver": [
         137
@@ -300,7 +300,7 @@
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "84:16:1",
+                  "src": "87:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -311,7 +311,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:1",
+                    "src": "87:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -327,7 +327,7 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "102:12:1",
+                  "src": "105:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -338,7 +338,7 @@
                     "id": 126,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "102:7:1",
+                    "src": "105:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -354,7 +354,7 @@
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "116:12:1",
+                  "src": "119:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -365,7 +365,7 @@
                     "id": 128,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "116:4:1",
+                    "src": "119:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -380,7 +380,7 @@
                   "name": "data",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "130:19:1",
+                  "src": "133:19:1",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -391,7 +391,7 @@
                     "id": 130,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "130:5:1",
+                    "src": "133:5:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -401,7 +401,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:67:1"
+              "src": "86:67:1"
             },
             "returnParameters": {
               "id": 135,
@@ -413,7 +413,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 136,
-                  "src": "169:6:1",
+                  "src": "172:6:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -424,7 +424,7 @@
                     "id": 133,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "169:6:1",
+                    "src": "172:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -434,20 +434,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "168:8:1"
+              "src": "171:8:1"
             },
             "scope": 137,
-            "src": "58:119:1",
+            "src": "61:119:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 138,
-        "src": "26:153:1"
+        "src": "28:155:1"
       }
     ],
-    "src": "0:179:1"
+    "src": "0:183:1"
   },
   "compiler": {
     "name": "solc",
@@ -455,7 +455,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-26T07:23:58.852Z",
+  "updatedAt": "2020-06-27T09:48:24.882Z",
   "devdoc": {
     "methods": {}
   },
