@@ -268,21 +268,38 @@ contract Kittycontract is IERC721, Ownable {
     }
 
     function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256){
-        //dadDna: 11 22 33 44 55 66 77 88 
-        //mumDna: 88 77 66 55 44 33 22 11
+        uint256[8] memory geneArray;
 
-        uint256 firstHalf = _dadDna / 100000000; //11223344
-        uint256 secondHalf = _mumDna % 100000000; //88776655
-        
-        uint256 newDna = firstHalf * 100000000;
-        newDna = newDna + secondHalf; // 1122334488776655
-        return newDna;
+        uint8 random = uint8( now % 255 ); //binary between 00000000-11111111
+        uint256 i = 1; //Random number is 11001011
+        uint256 index = 7;
 
-        //11 22 33 44 88 77 66 55
+        //MUM DNA 11 22 33 44 55 66 77 88
 
-        //10 + 20
-        //10 * 100 = 1000
-        //1000 + 20 = 1020
+        for (i = 1; i <= 128; i=i*2) {
+            if(random & i != 0){
+                geneArray[index] = uint8( _mumDna % 100);
+            }
+            else{
+                geneArray[index] = uint8( _dadDna % 100);
+            }
+            _mumDna = _mumDna / 100;
+            _dadDna = _dadDna / 100;
+
+            index = index - 1;
+        }
+
+        uint256 newGene;
+
+        //[11, 22, 33, 44, 55, 66, 77, 88]
+        //1122334455667788
+        for (i = 0; i < 8; i++) {
+            newGene = newGene + geneArray[i];
+            if(i != 7){
+                newGene = newGene * 100;
+            }
+        }
+        return newGene;
     
     }
 }
