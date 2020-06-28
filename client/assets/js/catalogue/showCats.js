@@ -50,10 +50,60 @@ function appendCat(dna, id, gen) {
     catBox(id)
     //3 Render the cats CSS style depending on DNA string
     renderCat(KittyDna, id)
+    $('#catview' + id).attr('onclick', 'go_to("catDetails.html?catId=' + id + '")')
     $('#catDNA' + id).html(`
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+gen+`</h4></span>
     <br>
     <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna +`</h4></span>`)
+}
+
+async function renderSingleCat(dna, id, gen) {
+
+    var KittyDna = catDna(dna)
+    //2 build the singleCat into HTML
+    var body = catBody(id)
+    var Cattributes = cattributes(id)
+    $('#cattributes').html(Cattributes)
+    $('#singleCat').html(body)
+    //3 Render the cats CSS style depending on DNA string
+    renderCat(KittyDna, id)
+    $('#catDNA').html(`
+    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>GEN:</b>`+ gen + `</h4></span>
+    <br>
+    <span class="badge badge-light"><h4 class="tsp-2 m-0"><b>DNA:</b>`+ dna + `</h4></span>`)
+    
+    await catOffer(id)
+}
+
+// Checks the Kitty on market situation
+async function catOffer(id) {
+
+    //Checking if this cat is for Sale
+    var offer = await checkOffer(id)
+    var seller = offer.seller.toLocaleLowerCase()
+    if (offer.onsale == true && seller != user) {
+        $('#buyBox').removeClass('hidden')
+        $('#priceBtn').html('<b>' + offer.price + ' ETH</b>')
+        $('#buyBtn').attr('onclick', 'buyKitten(' + id + ',"' + offer.price + '")')
+    }
+    
+    var ownership = await catOwnership(id)
+    //If user owns the cat
+    if (ownership == true) {        
+        //If is not on sale
+        if (offer.onsale == false) {
+            $('#sellBox').removeClass('hidden')
+            $('#sellBtn').attr('onclick', 'sellCat(' + id + ')')
+        } else {
+            $('#sellBox').removeClass('hidden')
+            $('#cancelBox').removeClass('hidden')
+            $('#cancelBtn').attr('onclick', 'deleteOffer(' + id + ')')
+            $('#sellBtn').addClass('btn-success')
+            $('#sellBtn').html('<b>For sale at:</b>')
+            $('#catPrice').val(offer.price)
+            $('#catPrice').prop('readonly', true)
+        }
+    }
 }
 
 function readyToBreed(){
