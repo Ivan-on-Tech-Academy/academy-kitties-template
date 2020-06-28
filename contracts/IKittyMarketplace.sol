@@ -14,7 +14,7 @@ interface IKittyMarketPlace {
     event MarketTransaction(string TxType, address owner, uint256 tokenId);
 
     /**
-    * Set the current KittyContract address.
+    * Set the current KittyContract address and initialize the instance of Kittycontract.
     * Requirement: Only the contract owner can call.
      */
     function setKittyContract(address _kittyContractAddress) external;
@@ -50,6 +50,7 @@ interface IKittyMarketPlace {
     * Sends the funds to the seller and transfers the token using transferFrom in Kittycontract.
     * Emits the MarketTransaction event with txType "Buy".
     * Requirement: The msg.value needs to equal the price of _tokenId
+    * Requirement: There must be an active offer for _tokenId
      */
     function buyKitty(uint256 _tokenId) external payable;
 }
