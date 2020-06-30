@@ -14,11 +14,11 @@ function genColors(){
     return colors
 }
 
+//This function code needs to modified so that it works with Your cat code.
 function headColor(color,code) {
-    //This code has to modified so that it works with Your cat code.
-    $('.cat__head, .cat__chest').css('background', '#' + color)
-    $('#headcode').html('code: '+code)
-    $('#dnabody').html(code)
+    $('.cat__head, .cat__chest').css('background', '#' + color)  //This changes the color of the cat
+    $('#headcode').html('code: '+code) //This updates text of the badge next to the slider
+    $('#dnabody').html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 
 
