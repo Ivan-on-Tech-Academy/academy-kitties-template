@@ -15,14 +15,16 @@ function genColors(){
 }
 
 function headColor(color,code) {
+    //This code has to modified so that it works with Your cat code.
     $('.cat__head, .cat__chest').css('background', '#' + color)
     $('#headcode').html('code: '+code)
     $('#dnabody').html(code)
 }
 
-// Variation functions for range-bars
 
-//8 eye types
+//###################################################
+//Functions below will be used later on in the project
+//###################################################
 function eyeVariation(num) {
 
     $('#dnashape').html(num)
@@ -34,8 +36,6 @@ function eyeVariation(num) {
     }
 }
 
-
-//8 decorations types
 function decorationVariation(num) {
     $('#dnadecoration').html(num)
     switch (num) {
@@ -46,17 +46,9 @@ function decorationVariation(num) {
     }
 }
 
-//6 Animations
-
-// **   Eyes **  //
-
 async function normalEyes() {
     await $('.cat__eye').find('span').css('border', 'none')
 }
-
-// **   Decoration **  //
-
-// ** Angles ** //
 
 async function normaldecoration() {
     //Remove all style from other decorations
