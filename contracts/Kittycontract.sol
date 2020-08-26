@@ -172,7 +172,6 @@ contract Kittycontract is IERC721, Ownable {
 
         gen0Counter++;
 
-        // Gen0 have no owners they are own by the contract
         return _createKitty(0, 0, 0, _genes, msg.sender);
     }
 
