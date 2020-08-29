@@ -17,18 +17,6 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
-  $('#dnamouth').html(defaultDNA.mouthColor);
-  $('#dnaeyes').html(defaultDNA.eyesColor);
-  $('#dnaears').html(defaultDNA.earsColor);
-    
-//   $('#dnashape').html(defaultDNA.eyesShape)
-//   $('#dnadecoration').html(defaultDNA.decorationPattern)
-//   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-//   $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-//   $('#dnaanimation').html(defaultDNA.animation)
-//   $('#dnaspecial').html(defaultDNA.lastNum)
-
   renderCat(defaultDNA)
 });
 
