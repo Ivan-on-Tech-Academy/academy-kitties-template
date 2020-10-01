@@ -3,8 +3,8 @@ var web3 = new Web3(Web3.givenProvider);
 var instance;
 var marketplaceInstance;
 var user;
-var contractAddress = "0xB9629E3aa656F4B4D31BaD29719894055626e84f";
-var marketplaceAddress = "0xb34b71425E9728aB72279dc6d9113777BA817050"
+var contractAddress = "0x6805d7eBD086D0c613Ce8c9CA7D48Fc48095aC61";
+var marketplaceAddress = "0xE0Dd73177d64771fDcC244627B8933E7D2dBa9A0"
  
 $(document).ready(function(){
     window.ethereum.enable().then(function(accounts){
@@ -68,7 +68,6 @@ $(document).ready(function(){
     })
 })
 
-//Gen 0 cats for sale
 async function initMarketplace() {
     var isMarketplaceOperator = await instance.methods.isApprovedForAll(user, marketplaceAddress).call();
 
@@ -89,7 +88,9 @@ async function getInventory() {
     var arrayId = await marketplaceInstance.methods.getAllTokenOnSale().call();
     console.log(arrayId);
     for (i = 0; i < arrayId.length; i++) {
-        appendKitty(arrayId[i])
+        if(arrayId[i] != 0){
+            appendKitty(arrayId[i])
+        }
     }
 }
 
@@ -194,7 +195,7 @@ function createKitty(){
     var dnaStr = getDna();
     instance.methods.createKittyGen0(dnaStr).send({}, function(error, txHash){
         if(error)
-            console.log(err);
+            console.log(error);
         else
             console.log(txHash);
     })
@@ -211,7 +212,7 @@ async function getKitties(){
     }
     for (i = 0; i < arrayId.length; i++){
       kitty = await instance.methods.getKitty(arrayId[i]).call();
-      appendCat(kitty[0],i, kitty.generation)
+      appendCat(kitty[0],arrayId[i], kitty.generation)
     }
     console.log(kitty);
     

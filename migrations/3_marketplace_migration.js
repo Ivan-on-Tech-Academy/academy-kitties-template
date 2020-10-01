@@ -1,7 +1,6 @@
-const Marketplace = artifacts.require("KittyMarketPlace");
 const Kittycontract = artifacts.require("Kittycontract");
+const Marketplace = artifacts.require("KittyMarketplace");
 
 module.exports = function(deployer) {
-  console.log(Kittycontract.address)
   deployer.deploy(Marketplace, Kittycontract.address);
 };

@@ -1,8 +1,4 @@
-/build
-build/contracts/IERC721.json
 build/contracts/*
-build/contracts/IERC721Receiver.json
-build/contracts/Kittycontract.json
-build/contracts/KittyMarketPlace.json
-build/contracts/Migrations.json
-build/contracts/Ownable.json
+node_modules/
+.secret
+truffle-config.js

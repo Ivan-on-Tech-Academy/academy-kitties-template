@@ -45,7 +45,7 @@ contract KittyMarketPlace is Ownable {
         uint256 price,
         uint256 index,
         uint256 tokenId,
-        bool activate
+        bool active
 
     ) {
         Offer storage offer = tokenIdToOffer[_tokenId];
@@ -64,7 +64,7 @@ contract KittyMarketPlace is Ownable {
       if (totalOffers == 0) {
           return new uint256[](0);
       } else {
-    
+          
         uint256[] memory result = new uint256[](totalOffers);
     
         uint256 offerId;
@@ -94,7 +94,7 @@ contract KittyMarketPlace is Ownable {
             _ownsKitty(msg.sender, _tokenId),
             "You are not the owner of that kitty"
         );
-        require(tokenIdToOffer[_tokenId].price == 0, "You can't sell twice the same offers ");
+        require(tokenIdToOffer[_tokenId].active == false, "You can't sell twice the same offers ");
         require(_kittyContract.isApprovedForAll(msg.sender, address(this)), "Contract needs to be approved to transfer the kitty in the future");
 
         Offer memory _offer = Offer({
@@ -104,7 +104,6 @@ contract KittyMarketPlace is Ownable {
           tokenId: _tokenId,
           index: offers.length
         });
-
 
         tokenIdToOffer[_tokenId] = _offer;
         offers.push(_offer);
@@ -123,7 +122,7 @@ contract KittyMarketPlace is Ownable {
         );
 
         delete tokenIdToOffer[_tokenId];
-        offers[tokenIdToOffer[_tokenId].index].active = false;
+        offers[offer.index].active = false;
 
         emit MarketTransaction("Remove offer", msg.sender, _tokenId);
 
@@ -135,10 +134,11 @@ contract KittyMarketPlace is Ownable {
     function buyKitty(uint256 _tokenId) public payable {
         Offer memory offer = tokenIdToOffer[_tokenId];
         require(msg.value == offer.price, "The price is incorrect");
+        require(tokenIdToOffer[_tokenId].active == true, "No active order present");
 
         // Important: delete the kitty from the mapping BEFORE paying out to prevent reentry attacks
         delete tokenIdToOffer[_tokenId];
-        offers[tokenIdToOffer[_tokenId].index].active = false;
+        offers[offer.index].active = false;
 
         // Transfer the funds to the seller
         // TODO: make this logic pull instead of push

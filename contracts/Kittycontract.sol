@@ -62,7 +62,6 @@ contract Kittycontract is IERC721, Ownable {
     uint256 public gen0Counter;
 
     constructor() public {
-        // We are creating the first kitty at index 0  
         _createKitty(0, 0, 0, uint256(-1), address(0));
     }
 
@@ -173,7 +172,6 @@ contract Kittycontract is IERC721, Ownable {
 
         gen0Counter++;
 
-        // Gen0 have no owners they are own by the contract
         return _createKitty(0, 0, 0, _genes, msg.sender);
     }
 
