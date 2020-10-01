@@ -24591,8 +24591,7 @@
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-28T12:56:34.183Z",
-  "networkType": "ethereum",
+  "updatedAt": "2020-06-30T12:35:56.589Z",
   "devdoc": {
     "methods": {
       "transferOwnership(address)": {
